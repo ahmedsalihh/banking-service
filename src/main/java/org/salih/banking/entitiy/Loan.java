@@ -31,6 +31,7 @@ public class Loan {
     @NotNull(message = "Status is required")
     private StatusEnum status;
 
+    @NotNull(message = "interest rate is required")
     @DecimalMin(value = "0.1", message = "Interest rate must be at least 0.1")
     @DecimalMax(value = "0.5", message = "Interest rate must not exceed 0.5")
     private float interestRate;

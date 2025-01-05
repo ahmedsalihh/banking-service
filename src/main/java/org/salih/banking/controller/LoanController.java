@@ -1,5 +1,6 @@
 package org.salih.banking.controller;
 
+import jakarta.validation.Valid;
 import org.salih.banking.entitiy.Loan;
 import org.salih.banking.enums.StatusEnum;
 import org.salih.banking.exception.NoLoanFoundException;
@@ -55,12 +56,12 @@ public class LoanController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Loan> addLoan(@RequestBody LoanRequest loanRequest) throws NoUserFoundException, NotEnoughCreditLimitException {
+    public ResponseEntity<Loan> addLoan(@Valid @RequestBody LoanRequest loanRequest) throws NoUserFoundException, NotEnoughCreditLimitException {
         return ResponseEntity.ok(loanService.addLoan(loanRequest));
     }
 
     @PostMapping("/pay")
-    public ResponseEntity<PaymentResult> pay(@RequestBody PaymentRequest paymentRequest) throws NoLoanFoundException {
+    public ResponseEntity<PaymentResult> pay(@Valid @RequestBody PaymentRequest paymentRequest) throws NoLoanFoundException {
         return ResponseEntity.ok(loanService.pay(paymentRequest));
     }
 }

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.salih.banking.entitiy.User;
+import org.salih.banking.model.UserRequest;
 import org.salih.banking.repositories.UserRepository;
 import org.salih.banking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ class UserServiceImplTest {
     void addUser() {
         Mockito.when(userRepository.save(Mockito.any())).thenReturn(Mockito.mock(User.class));
 
-        userService.addUser(new User());
+        userService.addUser(new UserRequest());
 
         verify(userRepository, times(1)).save(new User());
     }
@@ -43,7 +44,7 @@ class UserServiceImplTest {
     void listUsers() {
         Mockito.when(userRepository.findAll()).thenReturn(Arrays.asList(new User(), new User()));
 
-        List<User> users =  userService.listUsers();
+        List<User> users = userService.listUsers();
 
         assertEquals(users.size(), 2);
     }

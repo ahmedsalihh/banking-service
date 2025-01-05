@@ -2,6 +2,7 @@ package org.salih.banking.entitiy;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,6 +27,7 @@ public class User {
     private String lastname;
 
     @NotNull(message = "creditLimit is required")
+    @DecimalMin(value = "0.0", message = "creditLimit must be greater than or equal to 0")
     private BigDecimal creditLimit;
 
     private BigDecimal usedCreditLimit = BigDecimal.ZERO;

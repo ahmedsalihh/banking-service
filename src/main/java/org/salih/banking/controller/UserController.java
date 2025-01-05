@@ -1,6 +1,8 @@
 package org.salih.banking.controller;
 
+import jakarta.validation.Valid;
 import org.salih.banking.entitiy.User;
+import org.salih.banking.model.UserRequest;
 import org.salih.banking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<User> addUser(@RequestBody User user){
+    public ResponseEntity<User> addUser(@Valid @RequestBody UserRequest user){
         return ResponseEntity.ok(userService.addUser(user));
     }
 }
